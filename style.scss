@@ -1,0 +1,305 @@
+@mixin phone {
+    @media(max-width: 675px) {@content};
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #222;
+    user-select: none;
+    font-family: "Poppins", sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+
+    @include phone {
+        flex-wrap: wrap;
+        padding: 1rem 2rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .hamburger {
+        opacity: 0;
+        z-index: 2;
+        cursor: pointer;
+
+        @include phone {
+            opacity: 1;
+            cursor: pointer;
+           
+        }
+    }
+
+      .msgbox {
+          background: #444;
+          color: white;
+          padding: 1rem 1.5rem;
+          border-radius: 4px;
+          opacity: 0;
+          bottom: -75%;
+          right: 3.5%;
+          z-index: 5;
+          position: absolute;
+          transition: 0.25s ease-in-out;
+
+          @include phone {
+              right: 30%;
+              bottom: 60%;
+              max-width: 283px;
+              height: auto;
+          }
+
+          &.msg {
+              animation: msg 1s ease-in-out;
+          }
+
+      }
+
+       @keyframes msg {
+           0% {
+               opacity: 0;
+           }
+
+           15%{
+               opacity: 1;
+           }
+
+           50% {
+               opacity: 1;
+           }
+
+           85%{
+               opacity: 1;
+           }
+
+           100% {
+               opacity: 0;
+    
+           }
+       }
+
+    .menu {
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        margin: 0;
+        position: relative;
+        transition: 0.25s ease-in-out;
+
+        &.phone-v {
+            max-height: 70vh;
+            opacity: 1;
+            transition: 0.30s ease-in-out;
+        }
+
+          @include phone {
+             flex-direction: column;
+             height: 70vh;
+             max-height: 0vh;
+             overflow: hidden;
+             background: #333;
+             width: 100%;
+          }
+
+        form {
+            position: relative;
+            margin-left: 2rem;
+            display: flex;
+
+            @include phone {
+                order: 1;
+                margin:3rem 0rem 1rem 0rem;
+                display: block;
+                transform: scale(1.1);
+            }
+
+            .bar{
+                padding: 10px 40px;
+                border: none;
+                color: white;
+                background:#444;
+                cursor: pointer;
+                border-radius: 4px;
+                outline: none;
+                transition: 0.30s ease-in-out;
+                width:0px;
+                pointer-events: none;
+                position: relative;
+                overflow: none;
+                opacity: 1;
+
+                &.opened {
+                    pointer-events: visible;
+                    width: 200px;
+                    opacity:1;
+                    cursor: text;
+
+                    @include phone {
+                        width: 350px;
+                    }
+
+                }
+            }
+
+            .search {
+                background: none;
+                outline: none;
+                border: none;
+                position: absolute;
+                top: -10%;
+                left: 0%;
+                transform: scale(0.7);
+                cursor: pointer;
+                padding:10px;
+                z-index: 1;
+                transition: 0.30s ease-in-out;
+
+            }
+
+            .burger {
+                transition: 0.30s ease-in-out;
+                position: absolute;
+                top: 50%;
+                right: 6%;
+                transform: translate(-6%,-50%);
+                padding: 15px;
+                z-index: 1;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                background: none;
+
+                &.right {
+                    right: 0%;
+                }
+
+                @include phone {
+                    top: 50%;
+                }
+
+                .one {
+                    position: absolute;
+                    top: 30%;
+                    width: 20px;
+                    left: 50%;
+                    transform: translate(-50%, 0%);
+                    height: 2px;
+                    background: #d6d6d6;
+                    transition: 0.25s ease-in-out;
+
+                    &.open {
+                        top: 50%;
+                        left: 0;
+                        transform: rotate(40deg) translate(0%, 0%);
+                    }
+
+                }
+
+                 .two {
+                     position: absolute;
+                     top: 63%;
+                     width: 20px;
+                     left: 50%;
+                     transform: translate(-50%, 0%);
+                     height: 2px;
+                     background: #d6d6d6;
+                     transition: 0.25s ease-in-out;
+
+                        &.open {
+                            top: 50%;
+                            left: 0;
+                            transform: rotate(-40deg) translate(0%, 0%);
+                        }
+
+                 }
+
+                .three {
+                    position: absolute;
+                    width: 20px;
+                    height: 2px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    background: #d6d6d6;
+                    padding: 0;
+                    transition: 0.15s ease-in-out;
+                    cursor: pointer;
+               
+                       &.open {
+                           top: 50%;
+                           left: 0;
+                           opacity:0;
+                           transform: rotate(-40deg) translate(0%, 0%);
+                       }
+
+
+                }
+              
+
+            }
+
+        }
+
+        li {
+            list-style: none;
+            margin-left: 2rem;
+
+            &:nth-child(1){
+                @include phone {
+                    order: 2;
+                }
+            }
+
+             &:nth-child(2) {
+                 @include phone {
+                     order: 3;
+                 }
+             }
+
+              &:nth-child(3) {
+                  @include phone {
+                      order: 4;
+                  }
+              }
+
+            @include phone {
+                padding: 1rem 0;
+                 margin: auto 0;
+            }
+            
+            a {
+                text-decoration: none;
+                color: white;
+                font-size: 0.9rem;
+
+                @include phone {
+                    font-size: 1.7rem;
+                
+                }
+
+            }
+
+        }
+
+    }
+
+}

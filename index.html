@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Searchbar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar - Start -->
+
+<nav class="navbar">
+    <div class="navbar-brand">Blogx</div>
+    <img class="hamburger" src="open-menu.png" alt="">
+    <div class="msgbox"></div>
+    <ul class="menu">
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Profile</a></li>
+        <form>
+            <button type="button" class="search" id="icon"><img src="Search.png" alt=""></button>
+            <input class="bar" id="searchbar" type="text" placeholder="Search here">
+            
+            <button type="button" class="burger" id="burger">
+                <span class="one" ></span>
+                <span class="two" ></span>
+                <span class="three" ></span>
+            </button>
+        </form>
+        
+    </ul>
+    
+</nav>
+    
+    <script>
+        const search = document.querySelector('#icon');
+        const bar = document.querySelector('#searchbar');
+        const burger  = document.querySelector('#burger');
+        const menutop = document.querySelector('.one');
+        const menumid = document.querySelector('.two');
+        const menubot = document.querySelector('.three');
+        const ham = document.querySelector('.hamburger');
+        const menu = document.querySelector('.menu');
+        const msg = document.querySelector('.msgbox');
+
+        search.addEventListener('click', ()=> {
+            bar.classList.add('opened');
+            burger.classList.add('right');
+            menutop.classList.add('open');
+            menumid.classList.add('open');
+            menubot.classList.add('open');
+        })
+
+         bar.addEventListener("keyup", () => {
+                if (bar.value <= 0) {
+                    msg.innerHTML = "The Input Is Empty";
+                    msg.style.opacity = "1";
+                } else {
+                    msg.innerHTML = `Search for ${bar.value}`;
+                    msg.style.opacity = "1";
+                };
+            })
+
+
+        burger.addEventListener('click', ()=> {
+            bar.classList.remove('opened');
+             msg.style.opacity = "0";
+            burger.classList.remove('right');
+            menutop.classList.remove('open');
+            menumid.classList.remove('open');
+            menubot.classList.remove('open');
+        })
+
+        ham.addEventListener('click', ()=> {
+            msg.style.opacity = "0";
+            menu.classList.toggle('phone-v');
+        })
+
+
+    </script>
+
+</body>
+</html>
